@@ -426,84 +426,148 @@
     }
 
     /* ==========================================================================
-       HERO SECTION (With Animated Dove, Slogan Chip, CTAs)
+       HERO SECTION WITH VIDEO PLAYING BEHIND & SURFACED OPTIONS
        ========================================================================== */
     .hero-section {
-      padding: 60px 0 40px;
-      text-align: center;
       position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
+      padding: 80px 0 60px;
+      text-align: center;
     }
+
+    /* Background Video Backdrop */
+    .hero-video-backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+      background-color: #060e1d;
+    }
+    .hero-video-backdrop video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Tuned Semi-Transparent Overlay:
+       Opacity is light enough to clearly watch the video,
+       while ensuring text and options surface with crystal clarity */
+    .hero-video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(6, 14, 29, 0.42) 0%,
+        rgba(11, 27, 58, 0.22) 35%,
+        rgba(11, 27, 58, 0.28) 70%,
+        rgba(6, 14, 29, 0.82) 100%
+      );
+      pointer-events: none;
+    }
+    [data-theme="light"] .hero-video-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(11, 27, 58, 0.48) 0%,
+        rgba(15, 35, 75, 0.22) 35%,
+        rgba(15, 35, 75, 0.32) 70%,
+        rgba(244, 248, 251, 0.92) 100%
+      );
+    }
+
+    /* Content Layer Surfaced ON TOP of Video */
+    .hero-content-surfaced {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    /* Slogan Chip */
     .hero-slogan-chip {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 20px;
+      padding: 8px 22px;
       border-radius: 999px;
-      background: linear-gradient(135deg, rgba(214, 40, 57, 0.12), rgba(31, 78, 158, 0.12));
-      border: 1px solid rgba(214, 40, 57, 0.25);
-      color: var(--brand-crimson);
+      background: rgba(214, 40, 57, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #FFFFFF;
       font-weight: 700;
       font-size: 0.95rem;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 15px rgba(214, 40, 57, 0.1);
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     }
-    [data-theme="dark"] .hero-slogan-chip {
-      color: #FF6B6B;
-      border-color: rgba(255, 107, 107, 0.4);
-      background: linear-gradient(135deg, rgba(214, 40, 57, 0.22), rgba(53, 224, 255, 0.15));
-    }
+
+    /* Title & Text Surfaced with High Readability */
     .hero-title-bn {
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-size: clamp(2.4rem, 5.8vw, 4.4rem);
       font-weight: 700;
-      color: var(--brand-blue);
+      color: #FFFFFF;
       line-height: 1.15;
       margin-bottom: 8px;
       letter-spacing: -0.5px;
-    }
-    [data-theme="dark"] .hero-title-bn {
-      color: #60A5FA;
-      text-shadow: 0 0 35px rgba(53, 224, 255, 0.3);
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.75), 0 0 40px rgba(53, 224, 255, 0.4);
     }
     .hero-title-en {
       font-family: var(--font-en);
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
       font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 1px;
-      margin-bottom: 18px;
+      color: #F1F5F9;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
     }
     .hero-tagline {
-      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+      font-size: clamp(1.2rem, 2.8vw, 1.6rem);
       font-weight: 600;
-      color: var(--brand-crimson);
-      max-width: 780px;
-      margin: 0 auto 28px;
-      line-height: 1.5;
+      color: #FFE4E6;
+      max-width: 800px;
+      margin: 0 auto 22px;
+      line-height: 1.45;
+      text-shadow: 0 2px 18px rgba(214, 40, 57, 0.8), 0 2px 12px rgba(0, 0, 0, 0.85);
     }
-    [data-theme="dark"] .hero-tagline {
-      color: #F87171;
-    }
+
+    /* Nature Pill */
     .hero-nature-pill {
       display: inline-block;
       font-size: 0.92rem;
-      color: var(--text-secondary);
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      padding: 6px 18px;
+      color: #FFFFFF;
+      background: rgba(11, 27, 58, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 20px;
       border-radius: 999px;
-      margin-bottom: 32px;
+      margin-bottom: 30px;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
     }
+
+    /* Hero Buttons Surfaced on Video */
     .hero-actions {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
     }
 
-    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -521,24 +585,77 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--brand-blue), #2A69D6);
       color: #FFFFFF;
-      border: 1px solid rgba(53, 224, 255, 0.4);
-      box-shadow: 0 8px 24px rgba(31, 78, 158, 0.3);
+      border: 1px solid rgba(53, 224, 255, 0.6);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(53, 224, 255, 0.3);
     }
     .btn-primary:hover {
       background: linear-gradient(135deg, #163B7A, var(--brand-blue));
-      box-shadow: 0 12px 30px rgba(31, 78, 158, 0.4), var(--shadow-glow);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), var(--shadow-glow);
       transform: translateY(-2px);
     }
     .btn-outline {
-      background: var(--bg-card);
-      color: var(--text-primary);
-      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #FFFFFF;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
     .btn-outline:hover {
-      border-color: var(--brand-crimson);
-      color: var(--brand-crimson);
+      background: rgba(214, 40, 57, 0.85);
+      border-color: #FFFFFF;
+      color: #FFFFFF;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(214, 40, 57, 0.15);
+      box-shadow: 0 8px 24px rgba(214, 40, 57, 0.4);
+    }
+
+    /* Sound Pill Surfaced on Hero */
+    .hero-sound-btn {
+      height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      background: rgba(11, 27, 58, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #FFFFFF;
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid var(--accent-cyan-glow);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 18px rgba(53, 224, 255, 0.4);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .hero-sound-btn:hover {
+      background: var(--brand-blue);
+      border-color: #FFFFFF;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    /* Live Video Credit / Status Badge */
+    .hero-video-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: #E2E8F0;
+      background: rgba(11, 27, 58, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(53, 224, 255, 0.35);
+      padding: 5px 16px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+    .live-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-cyan-glow);
+      box-shadow: 0 0 8px var(--accent-cyan-glow);
+      animation: pulseDot 2s infinite ease-in-out;
     }
 
     /* Recurring Signature Motif: Dove + Red Stars SVG */
@@ -548,116 +665,15 @@
       transition: transform 0.4s ease;
     }
     .hero-dove-symbol {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 20px;
-      filter: drop-shadow(0 8px 20px rgba(31, 78, 158, 0.25));
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
       animation: floatGentle 4s ease-in-out infinite;
     }
     @keyframes floatGentle {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-8px) rotate(2deg); }
-    }
-
-    /* ==========================================================================
-       SECTION 1b: INTRO VIDEO (Ambient preview, Sound button, Captions)
-       ========================================================================== */
-    .video-section {
-      padding: 20px 0 70px;
-    }
-    .video-card-frame {
-      max-width: 960px;
-      margin: 0 auto;
-      background: var(--bg-card);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      border: 1px solid var(--border-glow);
-      box-shadow: 0 16px 45px rgba(31, 78, 158, 0.15), var(--shadow-glow);
-      position: relative;
-    }
-    .video-decor-dove {
-      position: absolute;
-      top: -18px;
-      left: 24px;
-      width: 44px;
-      height: 44px;
-      z-index: 10;
-      animation: floatGentle 5s ease-in-out infinite;
-    }
-    .video-decor-stars {
-      position: absolute;
-      top: -12px;
-      right: 28px;
-      display: flex;
-      gap: 6px;
-      z-index: 10;
-    }
-    .twinkle-star {
-      color: var(--brand-crimson);
-      font-size: 1.1rem;
-      animation: twinkle 2.5s infinite ease-in-out;
-    }
-    .twinkle-star:nth-child(2) { animation-delay: 0.8s; font-size: 0.9rem; }
-    .twinkle-star:nth-child(3) { animation-delay: 1.6s; font-size: 1.2rem; }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.35; transform: scale(0.85); }
-      50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 6px var(--brand-crimson)); }
-    }
-
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      background: #000000;
-    }
-    .video-wrapper video {
-      width: 100%;
-      aspect-ratio: 1614 / 1080;
-      display: block;
-      object-fit: cover;
-      border-radius: var(--radius-md);
-      background-color: #050c18;
-    }
-    .video-sound-bar {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      z-index: 20;
-    }
-    .btn-sound-toggle {
-      height: 44px;
-      padding: 0 16px;
-      border-radius: 999px;
-      background: rgba(11, 27, 58, 0.82);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: #FFFFFF;
-      font-size: 0.88rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(53, 224, 255, 0.6);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .btn-sound-toggle:hover {
-      background: rgba(31, 78, 158, 0.95);
-      border-color: #FFFFFF;
-      transform: scale(1.04);
-    }
-    .video-caption-box {
-      padding: 14px 12px 6px;
-      text-align: center;
-    }
-    .video-caption-text {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text-secondary);
     }
 
     /* ==========================================================================
@@ -1571,10 +1587,31 @@
          SECTION 1: HERO SECTION
          ======================================================================== -->
     <!-- ========================================================================
-         HEADER SECTION (Hero Header)
+         HERO SECTION: VIDEO PLAYING BEHIND WITH SURFACED OPTIONS
          ======================================================================== -->
     <header class="hero-section" id="hero">
-      <div class="container">
+      <!-- Background Video Backdrop Playing Behind -->
+      <div class="hero-video-backdrop" id="intro-video">
+        <video
+          id="introVideo"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="kopot-poster.jpg"
+          aria-label="কপোত খেলাঘর আসরের প্রামাণ্য পটভূমি ভিডিও">
+          <source src="kopot-intro.mp4" type="video/mp4">
+          <source src="kopot-intro.webm" type="video/webm">
+          <!-- Accessible fallback for old browsers -->
+          <p data-i18n="videoFallback">আপনার ব্রাউজারে ভিডিওটি সমর্থিত নয়। অনুগ্রহ করে kopot-intro.mp4 ফাইলটি ডাউনলোড করে দেখুন।</p>
+        </video>
+        <!-- Tuned Overlay: High clarity so video is clearly visible while text stays readable -->
+        <div class="hero-video-overlay" aria-hidden="true"></div>
+      </div>
+
+      <!-- Content Layer Surfaced ON TOP of the Video -->
+      <div class="container hero-content-surfaced">
         <!-- Signature Motif SVG: White Dove over Royal Blue Circle with 4 Red Stars -->
         <div class="hero-dove-symbol">
           <svg class="emblem-dove-svg" viewBox="0 0 120 120" width="100%" height="100%" aria-hidden="true">
@@ -1611,74 +1648,25 @@
           </span>
         </div>
 
+        <!-- Surfaced Options & Actions -->
         <div class="hero-actions">
           <a href="#about" class="btn btn-primary" data-i18n="btnAbout">আমাদের সম্পর্কে</a>
           <a href="#contact" class="btn btn-outline" data-i18n="btnContact">যোগাযোগ করুন</a>
+          
+          <!-- Sound Toggle Button surfaced directly on the hero video -->
+          <button id="videoSoundBtn" class="btn-sound-toggle hero-sound-btn" type="button" aria-label="ভিডিওর শব্দ চালু বা বন্ধ করুন">
+            <span id="soundIcon">🔇</span>
+            <span id="soundLabel" data-i18n="soundOff">শব্দ বন্ধ (চালু করতে ক্লিক করুন)</span>
+          </button>
+        </div>
+
+        <!-- Video Moments Badge -->
+        <div class="hero-video-badge">
+          <span class="live-pulse-dot" aria-hidden="true"></span>
+          <span data-i18n="videoCaption">কপোত খেলাঘর আসরের কিছু মুহূর্ত</span>
         </div>
       </div>
     </header>
-
-    <!-- ========================================================================
-         SECTION 1b: INTRO VIDEO (Ambient Preview, 1614/1080, Sound Button)
-         ======================================================================== -->
-    <section class="video-section" id="intro-video" aria-labelledby="videoSectionTitle">
-      <div class="container">
-        <div class="section-header" style="margin-bottom: 28px;">
-          <span class="section-eyebrow" data-i18n="videoEyebrow">এক নজরে</span>
-          <h2 class="section-title" id="videoSectionTitle" data-i18n="videoTitle">আমাদের এক ঝলক</h2>
-          <p class="section-desc" data-i18n="videoSubtitle">কপোত খেলাঘর আসরের আনন্দ, সৃজনশীলতা ও শিশু কিশোরদের রঙিন পদচারণা</p>
-        </div>
-
-        <div class="video-card-frame">
-          <!-- Corner Accents -->
-          <div class="video-decor-dove">
-            <svg viewBox="0 0 50 50" width="100%" height="100%" aria-hidden="true">
-              <circle cx="25" cy="25" r="23" fill="#1F4E9E"/>
-              <path d="M15,32 C20,30 28,24 30,17 C33,15 38,16 40,19 C38,21 34,24 29,27 C34,27 38,28 41,30 C35,34 25,35 18,34 Z" fill="#FFFFFF"/>
-            </svg>
-          </div>
-          <div class="video-decor-stars">
-            <span class="twinkle-star">★</span>
-            <span class="twinkle-star">★</span>
-            <span class="twinkle-star">★</span>
-          </div>
-
-          <!-- Video Element: aspect-ratio 1614 / 1080 prevents layout shift -->
-          <div class="video-wrapper">
-            <video
-              id="introVideo"
-              autoplay
-              muted
-              loop
-              playsinline
-              controls
-              preload="auto"
-              poster="kopot-poster.jpg"
-              aria-label="কপোত খেলাঘর আসরের প্রামাণ্য ঝলক ভিডিও">
-              <source src="kopot-intro.mp4" type="video/mp4">
-              <source src="kopot-intro.webm" type="video/webm">
-              <!-- Accessible fallback for old browsers -->
-              <p data-i18n="videoFallback">আপনার ব্রাউজারে ভিডিওটি সমর্থিত নয়। অনুগ্রহ করে kopot-intro.mp4 ফাইলটি ডাউনলোড করে দেখুন।</p>
-              <!-- Captions placeholder track -->
-              <!-- <track kind="captions" src="captions.vtt" srclang="bn" label="Bangla"> -->
-            </video>
-
-            <!-- Visible Sound Toggle Pill -->
-            <div class="video-sound-bar">
-              <button id="videoSoundBtn" class="btn-sound-toggle" type="button" aria-label="ভিডিওর শব্দ চালু বা বন্ধ করুন">
-                <span id="soundIcon">🔇</span>
-                <span id="soundLabel" data-i18n="soundOff">শব্দ বন্ধ (চালু করতে ক্লিক করুন)</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Editable Caption directly below -->
-          <div class="video-caption-box">
-            <p class="video-caption-text" data-i18n="videoCaption">কপোত খেলাঘর আসরের কিছু মুহূর্ত</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ========================================================================
          SECTION 2: ABOUT (Infographic Card & 3 Pillars)
